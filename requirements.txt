@@ -1,0 +1,9 @@
+# Core dependencies
+PyQt5>=5.15.0
+requests>=2.25.0
+
+# Time and system utilities
+python-dateutil>=2.8.1
+
+# For handling JSON
+simplejson>=3.17.0
