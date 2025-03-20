@@ -18,7 +18,7 @@ A desktop application for translating text and subtitle files using local large 
 
 - Python 3.6+
 - KoboldCPP server running locally
-- Recommended LLM: **Gemma 3 27B** (provides excellent translation quality). Depending on the language and hardware, Gemma 3 12B might be a good choice also.
+- Recommended LLM: Gemma 3 27B abliterated (provides excellent translation quality). Depending on the language and hardware, Gemma 3 12B abliterated might also be a good choice. Abliterated models are recommended over the original Gemma 3 models because the original models are too censored and often refuse to translate any controversial texts.
 
 ### Setup
 
@@ -47,7 +47,7 @@ python app.py
 
 ### Setting Up the Server Connection
 
-1. Start your KoboldCPP instance with your preferred LLM (Gemma 3 27B recommended)
+1. Start your KoboldCPP instance with your preferred LLM (Gemma 3 27B abliterated recommended)
 2. Click "Connect" on LocalTranslator GUI and verify the connection status changes to "Connected"
 
 ### Free Text Translation
@@ -70,6 +70,7 @@ python app.py
 
 - **Connection issues**: Verify KoboldCPP is running and accessible at the specified URL
 - **Incomplete translations**: Try reducing batch size
-- **Slow performance**: try Gemma 3 12B or run on a machine with better GPU/CPU
-- **My language is not in the app**: just edit the main.py code, the LLM (Gemma 3) propably can understand and write your language
+- **Slow performance**: Try Gemma 3 12B abliterated or run on a machine with a better GPU/CPU.
+- **My language is not in the app**: Edit the main.py code; the LLM (Gemma 3 abliterated) probably can understand and write in your language.
+
 
