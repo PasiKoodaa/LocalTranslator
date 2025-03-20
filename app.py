@@ -309,7 +309,6 @@ class TranslationWorker(QThread):
         self.target_lang = target_lang
         self.batch_size = batch_size
         self.delay = delay
-        # self.quality = quality
         self.abort = False
     
     def run(self):
@@ -463,21 +462,12 @@ class TranslationApp(QMainWindow):
         settings_group = QGroupBox("Translation Settings")
         settings_layout = QGridLayout()
         
-        # self.quality_slider = QSlider(Qt.Horizontal)
-        # self.quality_slider.setMinimum(0)
-        # self.quality_slider.setMaximum(100)
-        # self.quality_slider.setValue(50)
-        # self.quality_label = QLabel("Quality: Balanced")
-        
         self.delay_spinbox = QSpinBox()
         self.delay_spinbox.setMinimum(0)
         self.delay_spinbox.setMaximum(10)
         self.delay_spinbox.setValue(1)
         self.delay_spinbox.setSuffix(" seconds")
         
-        # settings_layout.addWidget(QLabel("Translation Quality:"), 0, 0)
-        # settings_layout.addWidget(self.quality_slider, 0, 1)
-        # settings_layout.addWidget(self.quality_label, 0, 2)
         settings_layout.addWidget(QLabel("Delay Between Batches:"), 1, 0)
         settings_layout.addWidget(self.delay_spinbox, 1, 1)
         
@@ -497,7 +487,6 @@ class TranslationApp(QMainWindow):
         
         # Connect signals
         self.connect_button.clicked.connect(self.test_connection)
-        # self.quality_slider.valueChanged.connect(self.update_quality_label)
     
     def init_free_text_tab(self):
         """Initialize the free text translation tab"""
@@ -667,19 +656,7 @@ class TranslationApp(QMainWindow):
         self.stop_button.clicked.connect(self.stop_translation)
         self.srt_source_text_edit.textChanged.connect(self.update_srt_stats)
     
-    # def update_quality_label(self):
-        """Update the quality label based on slider value"""
-        #value = self.quality_slider.value()
-        #if value < 25:
-         #   quality_text = "Speed Focused"
-        #elif value < 50:
-          #  quality_text = "Balanced (Speed)"
-        #elif value < 75:
-         #   quality_text = "Balanced (Quality)"
-        #else:
-         #   quality_text = "Quality Focused"
-        
-        # self.quality_label.setText(f"Quality: {quality_text}")
+
     
     def update_char_count(self):
         """Update the character count label for free text tab"""
@@ -752,7 +729,7 @@ class TranslationApp(QMainWindow):
             
         source_lang = self.source_lang_combo.currentText()
         target_lang = self.target_lang_combo.currentText()
-        # quality = self.quality_slider.value() / 100.0
+
         
         # Update UI for translation in progress
         self.translate_button.setEnabled(False)
@@ -786,7 +763,7 @@ class TranslationApp(QMainWindow):
         target_lang = self.srt_target_lang_combo.currentText()
         batch_size = self.batch_size_spinbox.value()
         delay = self.delay_spinbox.value()
-        # quality = self.quality_slider.value() / 100.0
+
         
         # Update UI for translation in progress
         self.srt_translate_button.setEnabled(False)
@@ -925,7 +902,6 @@ class TranslationApp(QMainWindow):
         target_lang = self.settings.value("target_lang", "Finnish")
         batch_size = self.settings.value("batch_size", 10, int)
         delay = self.settings.value("delay", 1, int)
-        # quality = self.settings.value("quality", 50, int)
         
         self.server_url_input.setText(server_url)
         
@@ -938,7 +914,6 @@ class TranslationApp(QMainWindow):
         self.srt_target_lang_combo.setCurrentText(target_lang)
         self.batch_size_spinbox.setValue(batch_size)
         self.delay_spinbox.setValue(delay)
-        # self.quality_slider.setValue(quality)
     
     def save_settings(self):
         """Save application settings"""
@@ -947,7 +922,6 @@ class TranslationApp(QMainWindow):
         self.settings.setValue("target_lang", self.target_lang_combo.currentText())
         self.settings.setValue("batch_size", self.batch_size_spinbox.value())
         self.settings.setValue("delay", self.delay_spinbox.value())
-        # self.settings.setValue("quality", self.quality_slider.value())
     
     def closeEvent(self, event):
         """Override close event to save settings"""
